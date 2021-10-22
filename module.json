@@ -1,0 +1,13 @@
+{
+    "name": "AuthPassport",
+    "alias": "AuthPassport",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\AuthPassport\\Providers\\AuthPassportServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
