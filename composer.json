@@ -25,6 +25,5 @@
         "psr-4": {
             "Modules\\AuthPassport\\": ""
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
