@@ -6,8 +6,8 @@ require('laravel-mix-merge-manifest');
 
 mix.setPublicPath('../../public').mergeManifest();
 
-mix.js(__dirname + '/Resources/assets/js/app.js', 'js/AuthPassport.js')
-    .sass( __dirname + '/Resources/assets/sass/app.scss', 'css/AuthPassport.css');
+mix.js(__dirname + '/Resources/assets/js/app.js', 'js/authpassport.js')
+    .sass( __dirname + '/Resources/assets/sass/app.scss', 'css/authpassport.css');
 
 if (mix.inProduction()) {
     mix.version();

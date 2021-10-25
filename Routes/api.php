@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-use Modules\AuthPassport\Http\Controllers\AuthController;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,40 +11,26 @@ use Modules\AuthPassport\Http\Controllers\AuthController;
 |
 */
 
-Route::post('register', [
-    'uses' => '\Modules\AuthPassport\Http\Controllers\RegisterController@register',
-    'as'   => 'api.passport.register',
-]);
+use Modules\AuthPassport\Http\Controllers\API\ForgotPasswordApiController;
+use Modules\AuthPassport\Http\Controllers\API\LoginApiController;
+use Modules\AuthPassport\Http\Controllers\API\LogoutApiController;
+use Modules\AuthPassport\Http\Controllers\API\RegisterApiController;
 
-Route::get('confirm-register', [
-    'uses' => '\Modules\AuthPassport\Http\Controllers\RegisterController@confirmRegister',
-    'as'   => 'api.passport.confirm',
-]);
+Route::prefix('oauth')->name('oauth.')->group(
+    function () {
+        Route::post('login', [LoginApiController::class, '__invoke'])
+             ->middleware('guest')->name('login');
 
-Route::post('login', [
-    'uses' => '\Modules\AuthPassport\Http\Controllers\AuthController@login',
-    'as'   => 'api.passport.login',
-]);
+        Route::post('logout', [LogoutApiController::class, '__invoke'])
+             ->middleware('auth:api')->name('logout');
 
-Route::post('forgot-password', [
-    'uses' => '\Modules\AuthPassport\Http\Controllers\PasswordController@forgotPassword',
-    'as'   => 'api.passport.forgot-password',
-]);
+        Route::post('register', [RegisterApiController::class, '__invoke'])
+            ->middleware('guest')->name('register');
 
-Route::post('reset-password', [
-    'uses' => '\Modules\AuthPassport\Http\Controllers\PasswordController@resetPassword',
-    'as'   => 'api.passport.reset-password',
-]);
-
-//add this middleware to ensure that every request is authenticated
-Route::middleware('auth:api')->group(function () {
-    Route::get('user', [
-        'uses' => '\Modules\AuthPassport\Http\Controllers\AuthController@getUser',
-        'as'   => 'api.passport.user',
-    ]);
-
-    Route::get('logout', [
-        'uses' => '\Modules\AuthPassport\Http\Controllers\AuthController@logout',
-        'as'   => 'api.passport.logout',
-    ]);
-});
+        Route::post('forgot-password', [ForgotPasswordApiController::class, '__invoke'])
+             ->name('password.email');
+        //
+        //        Route::post('reset-password', [NewPasswordController::class, '__invoke'])
+        //            ->name('password.update');
+    }
+);

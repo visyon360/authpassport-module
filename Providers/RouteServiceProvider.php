@@ -56,6 +56,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('api')
             ->middleware('api')
+            ->as('api.')
             ->group(module_path('AuthPassport', '/Routes/api.php'));
     }
 }

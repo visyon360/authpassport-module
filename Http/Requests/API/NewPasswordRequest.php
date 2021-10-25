@@ -1,11 +1,12 @@
 <?php
 
-namespace Modules\AuthPassport\Http\Requests;
+namespace Modules\AuthPassport\Http\Requests\API;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\API\ApiBaseFormRequest;
 
-class ForgotPasswordRequest extends FormRequest
+class NewPasswordRequest extends ApiBaseFormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,7 +25,9 @@ class ForgotPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'       => 'required|email',
+            'token'    => 'required',
+            'email'    => 'required|email',
+            'password' => 'required|string|confirmed|min:8',
         ];
     }
 }

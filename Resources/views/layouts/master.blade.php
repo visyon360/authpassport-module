@@ -7,13 +7,13 @@
         <title>Module AuthPassport</title>
 
        {{-- Laravel Mix - CSS File --}}
-       {{-- <link rel="stylesheet" href="{{ mix('css/AuthPassport.css') }}"> --}}
+       {{-- <link rel="stylesheet" href="{{ mix('css/authpassport.css') }}"> --}}
 
     </head>
     <body>
         @yield('content')
 
         {{-- Laravel Mix - JS File --}}
-        {{-- <script src="{{ mix('js/AuthPassport.js') }}"></script> --}}
+        {{-- <script src="{{ mix('js/authpassport.js') }}"></script> --}}
     </body>
 </html>

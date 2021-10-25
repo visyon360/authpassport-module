@@ -1,11 +1,12 @@
 <?php
 
-namespace Modules\AuthPassport\Http\Requests;
+namespace Modules\AuthPassport\Http\Requests\API;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\API\ApiBaseFormRequest;
 
-class ConfirmSignUpRequest extends FormRequest
+class PasswordResetLinkRequest extends ApiBaseFormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,7 +25,7 @@ class ConfirmSignUpRequest extends FormRequest
     public function rules()
     {
         return [
-            'token' => 'exists:App\Models\RegistrationToken,token',
+            'email' => 'required|email',
         ];
     }
 }
